@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout::main(title = 'Registrar empleado', content = ~{::content}, head = null, body = null)}">
+<div th:fragment="content" class="vstack gap-3">
+    <div class="row align-items-center">
+        <div class="col-auto"><h3>Registrarse</h3></div>
+    </div>
+    <form method="post" th:action="@{/register}" class="row g-3" th:object="${user}">
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="name">Nombre:</label>
+            <input class="form-control" autocomplete="off" required type="text" maxlength="45" th:field="*{name}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="surname">Primer apellido:</label>
+            <input class="form-control" autocomplete="off" required type="text" maxlength="45" th:field="*{surname}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label for="lastname">Segundo apellido:</label>
+            <input class="form-control" autocomplete="off" type="text" maxlength="45" th:field="*{lastname}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="email">Correo electrónico:</label>
+            <input class="form-control" autocomplete="off" required type="email" maxlength="60" th:field="*{email}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="password">Contraseña:</label>
+            <input class="form-control" autocomplete="off" required type="text" minlength="10" maxlength="10" pattern="\d*" th:field="*{password}">
+        </div>
+        <div class="col-12">
+            <div class="row g-2 justify-content-end">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i><span class="text-btn">Guardar</span></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</html>

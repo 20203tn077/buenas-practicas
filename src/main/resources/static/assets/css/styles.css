@@ -1,0 +1,11 @@
+h1,h2,h3,h4,h5,hr,table {
+    margin: 0 !important;
+}
+.text-btn {
+    margin-inline-start: .5em;
+}
+
+.required:after {
+    content: ' *';
+    color: rgba(var(--bs-danger-rgb));
+}

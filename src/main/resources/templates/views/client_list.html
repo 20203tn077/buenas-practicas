@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout::main(title = 'Empleados', content = ~{::content}, head = null, body = null)}">
+<div th:fragment="content" class="vstack gap-3">
+    <div class="row align-items-center">
+        <div class="col-auto"><h3>Clientes</h3></div>
+    </div>
+    <hr>
+    <table class="table table-striped text-center">
+        <thead>
+        <tr>
+            <th>No. empleado</th>
+            <th>Nombre</th>
+            <th>Auto</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>No. empleado</td>
+            <td>Nombre</td>
+            <td>Auto</td>
+            <td>Acciones</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

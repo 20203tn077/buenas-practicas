@@ -1,0 +1,42 @@
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Extraordinario</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" th:href="@{/capturistas}">Capturistas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" th:href="@{/clientes}">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" th:href="@{/pedidos}">Pedidos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" th:href="@{/productos}">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" th:href="@{/registrarse}">Registrarse</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<th:block th:fragment="alert">
+    <script th:if="${successMessage}">notyf.success('[[${successMessage}]]')</script>
+    <script th:if="${errorMessage}">notyf.error('[[${errorMessage}]]')</script>
+</th:block>
+<th:block th:fragment="void"></th:block>
+
+
+
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+
+    </div>
+</nav>
