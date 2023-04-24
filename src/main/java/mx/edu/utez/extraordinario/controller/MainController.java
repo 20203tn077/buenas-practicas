@@ -1,11 +1,13 @@
 package mx.edu.utez.extraordinario.controller;
 
+import jakarta.validation.Valid;
 import mx.edu.utez.extraordinario.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MainController {
@@ -41,8 +43,11 @@ public class MainController {
     }
 
     @PostMapping("register")
-    public String register(Model model) {
-        model.addAttribute("user", new User());
-        return "views/register";
+    public String register(@Valid Model model, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            model.addAttribute("user", new User());
+            return "views/register";
+        }
+        return "redirect:/";
     }
 }

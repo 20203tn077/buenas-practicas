@@ -15,19 +15,21 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
+        final String DEF_PASS = "cisco123";
+
         UserDetails user1 = User.withDefaultPasswordEncoder()
                 .username("admin")
-                .password("cisco123")
+                .password(DEF_PASS)
                 .roles("ADMIN")
                 .build();
         UserDetails user2 = User.withDefaultPasswordEncoder()
                 .username("capturista")
-                .password("cisco123")
+                .password(DEF_PASS)
                 .roles("TRANSCRIBER")
                 .build();
         UserDetails user3 = User.withDefaultPasswordEncoder()
                 .username("cliente")
-                .password("cisco123")
+                .password(DEF_PASS)
                 .roles("CLIENT")
                 .build();
         return new InMemoryUserDetailsManager(user1, user2, user3);
@@ -35,13 +37,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        final String ADMIN = "ADMIN";
+        final String TRANSCRIBER = "TRANSCRIBER";
+        final String CLIENT = "CLIENT";
+        final String ANONYMOUS = "ANONYMOUS";
+
         http.authorizeHttpRequests(requests -> {
             requests.requestMatchers("/assets/**", "/").permitAll();
-            requests.requestMatchers("/capturistas").hasAnyRole("ADMIN");
-            requests.requestMatchers("/clientes").hasAnyRole("ADMIN", "TRANSCRIBER");
-            requests.requestMatchers("/pedidos").hasAnyRole("ADMIN", "TRANSCRIBER", "CLIENT");
-            requests.requestMatchers("/productos").hasAnyRole("CLIENT", "ANONYMOUS");
-            requests.requestMatchers("/registrarse").hasAnyRole("ANONYMOUS");
+            requests.requestMatchers("/capturistas").hasAnyRole(ADMIN);
+            requests.requestMatchers("/clientes").hasAnyRole(ADMIN, TRANSCRIBER);
+            requests.requestMatchers("/pedidos").hasAnyRole(ADMIN, TRANSCRIBER, CLIENT);
+            requests.requestMatchers("/productos").hasAnyRole(CLIENT, ANONYMOUS);
+            requests.requestMatchers("/registrarse").hasAnyRole(ANONYMOUS);
             requests.anyRequest().authenticated();
         });
         http.formLogin().permitAll();
